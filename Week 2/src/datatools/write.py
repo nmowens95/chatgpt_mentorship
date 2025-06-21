@@ -29,7 +29,7 @@ def save_df(filetype, summary, save):
                 for col in summary["columns"]:
                     f.write(f"Column name: {col['name']}\n")
                     f.write(f"Column dtype: {col['dtype']}\n")
-                    f.write(f"Percent missing: {col['isna']}\n")
+                    f.write(f"Percent missing: {col['null']}\n")
                     f.write(f"Column mode: {col['mode']}\n")
                     # f.write(f"Column most frequent: {col['most_frequent']}\n")
 

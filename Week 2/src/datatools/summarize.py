@@ -16,13 +16,19 @@ def include_dtype_fx(col: pd.Series) -> dict:
 
 def include_null_fx(col: pd.Series) -> dict:
     col_isna = round(100 * (col.isna().sum() / len(col)), 1)
-    return {"isna": col_isna}
+    return {"null": col_isna}
 
 def include_mode_fx(column: pd.Series) -> dict:
     col_mode = column.mode()
     return {"mode": col_mode.to_list()}
 
-def summarize_df(df, include_dtype=True, include_null=True, include_mode=True):
+FEATURE_REGISTRY = {
+    "dtype": include_dtype_fx,
+    "null": include_null_fx,
+    "mode": include_mode_fx
+}
+
+def summarize_df(df, features: list[str] = None):
     """
     Summarize a pandas DataFrame by generating stats per column.
 
@@ -44,15 +50,19 @@ def summarize_df(df, include_dtype=True, include_null=True, include_mode=True):
         raise ValueError("Empty DataFrame pass")
 
     # Dyncamically collect necessary functions
-    features = []
-    if include_dtype:
-        features.append(include_dtype_fx)      
+    feature_functions = [
+        FEATURE_REGISTRY[name] for name in features or [] if name in FEATURE_REGISTRY
+    ]
 
-    if include_null:
-        features.append(include_null_fx)
+    # features = []
+    # if include_dtype:
+    #     features.append(include_dtype_fx)      
 
-    if include_mode:
-        features.append(include_mode_fx) 
+    # if include_null:
+    #     features.append(include_null_fx)
+
+    # if include_mode:
+    #     features.append(include_mode_fx) 
     
     summary = {"columns": []}
     for column in df.columns:
@@ -62,7 +72,7 @@ def summarize_df(df, include_dtype=True, include_null=True, include_mode=True):
 
         column_summary = {"name": df[column].name}
 
-        for func in features:
+        for func in feature_functions:
             column_summary.update(func(df[column]))
     
         summary["columns"].append(column_summary)
