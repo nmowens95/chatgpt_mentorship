@@ -4,3 +4,7 @@
 2025-06-24 20:45 - INFO - Successfully logged: products.csv
 2025-06-24 20:45 - INFO - Successfully logged: customers.csv
 2025-06-24 20:45 - INFO - All files have successfully been summarized!
+2025-06-24 21:08 - INFO - File: users.ndjson is not a csv file
+2025-06-24 21:08 - INFO - Successfully logged: products.csv
+2025-06-24 21:08 - INFO - Successfully logged: customers.csv
+2025-06-24 21:08 - INFO - All files have successfully been summarized!
