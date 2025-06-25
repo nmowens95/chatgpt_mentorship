@@ -27,6 +27,8 @@ def setup_logger(name="summarizer", log_file="app.log", level=logging.INFO):
 
     # Set up the logger
     logger = logging.getLogger(name)
+    if logger.hasHandlers(): # Prevent duplicates
+        return logger
     logger.setLevel(level)
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)

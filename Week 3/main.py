@@ -11,14 +11,20 @@ parser.add_argument(
     type=str,
     help="Path for files to iterate over"
 )
+parser.add_argument(
+    "--features",
+    type=str,
+    help="Comma seperated values for features: dtype,null,mode"
+)
 args = parser.parse_args()
 
 if __name__ == "__main__":
     file_tuples = load_csv_files(args.dir_path)
-    
+
     try:
         for df, file_name, file_type in file_tuples:
-            summarize_df(df, file_name, file_type)
+            feature_list = args.features.split(",") if args.features else []
+            summarize_df(df, file_name, file_type, feature_list)
     
     except Exception as e:
         logger.info(f"Error with summarizing files: {e}")
