@@ -60,3 +60,9 @@
 2025-06-30 14:20 - INFO - Successfully logged: products.csv
 2025-06-30 14:20 - INFO - Successfully logged: customers.csv
 2025-06-30 14:20 - INFO - Error with summarizing files: Object of type int64 is not JSON serializable
+2025-06-30 14:35 - INFO - File: users.ndjson is not a csv file
+2025-06-30 14:35 - INFO - Successfully logged: products.csv
+2025-06-30 14:35 - INFO - Successfully logged: customers.csv
+2025-06-30 14:35 - INFO - Summary written to output/products_summary.txt
+2025-06-30 14:35 - INFO - Summary written to output/customers_summary.txt
+2025-06-30 14:35 - INFO - All files have successfully been summarized!

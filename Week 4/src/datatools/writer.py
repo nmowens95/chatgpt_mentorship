@@ -6,8 +6,11 @@ def write_txt(summary, file_name, output_dir):
     path = os.path.join(output_dir, f"{file_name}_summary.txt")
 
     with open(path, "w") as file:
-        for col, val in summary.items():
-            file.write(f"{col}: {val}\n")
+        for feature, cols in summary.items():
+            file.write(f"--- {feature.upper()} ---\n")
+            for col, val in cols.items():
+                file.write(f"{col}: {val}\n")
+            file.write("\n")
     return path
 
 def write_json(summary, file_name, output_dir):
