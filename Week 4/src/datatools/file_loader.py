@@ -14,7 +14,7 @@ def safe_read_csv(file_path):
     except Exception as e:
         raise CustomFileReadError(f"Error to read {file_path}: {e}")
 
-def load_csv_files(dir_path):
+def load_files(dir_path):
     file_tuples = []
 
     if not os.path.exists(dir_path):
@@ -27,14 +27,27 @@ def load_csv_files(dir_path):
     for file in os.listdir(dir_path):
         full_path = os.path.join(dir_path, file)
 
-        if file.endswith("csv"):
+        if file.lower().endswith("csv"):
             file_name, file_type = os.path.splitext(file)
             df = safe_read_csv(full_path)
 
             file_tuples.append((df, file_name, file_type))
             logger.info(f"Successfully logged: {file}")
         
+        elif file.lower().endswith("ndjson"):
+            file_name, file_type = os.path.splitext(file)
+            df = pd.read_json(full_path, lines=True)
+
+            file_tuples.append((df, file_name, file_type))
+            logger.info(f"Successfully logged: {file}")
+
+        elif file.lower().endswith("xlsx"):
+            raise CustomFileReadError(f"File {file} is an xlsx file")
+        
         else:
-            logger.info(f"File: {file} is not a csv file")
+            file_name, file_type = os.path.splitext(file)
+            raise CustomFileReadError(f"File {file_type} not handled for {file}")
+        
+    logger.info(f"All files have been iterated!")
             
     return file_tuples

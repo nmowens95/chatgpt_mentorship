@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 from datatools.features import dtype_summary, null_summary, mode_summary
-from datatools.file_loader import CustomFileReadError, load_csv_files
+from datatools.file_loader import CustomFileReadError, load_files
 import pytest
 
 def test_dtype_summary():
@@ -42,5 +42,5 @@ def test_mode_summary():
 
 def test_CustomFileReadError():
     with pytest.raises(CustomFileReadError):
-        load_csv_files("fake_dir")
+        load_files("fake_dir")
         

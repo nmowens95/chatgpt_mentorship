@@ -1,5 +1,5 @@
 from src.datatools.logger_config import setup_logger
-from src.datatools.file_loader import load_csv_files
+from src.datatools.file_loader import load_files
 from src.datatools.summarizer import summarize_df
 from src.datatools.parser import parse_args
 
@@ -7,7 +7,7 @@ def main():
     logger = setup_logger()
     args = parse_args()
 
-    file_tuples = load_csv_files(args.dir_path)
+    file_tuples = load_files(args.dir_path)
 
     feature_list = args.features.split(",") if args.features else []
 
