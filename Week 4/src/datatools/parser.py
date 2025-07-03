@@ -9,12 +9,15 @@ def parse_args():
     )
     parser.add_argument(
         "--features",
-        type=str,
+        type=lambda s: s.split(","),
+        default=["null", "dtype", "mode"],
         help="Comma seperated values for features: dtype,null,mode"
     )
     parser.add_argument(
         "--writer",
         type=str,
+        default="txt",
+        choices=["txt", "json"],
         help="Writer to distinguish how output summary is writter (json or txt)"
     )
     return parser.parse_args()

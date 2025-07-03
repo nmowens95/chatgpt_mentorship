@@ -66,3 +66,19 @@
 2025-06-30 14:35 - INFO - Summary written to output/products_summary.txt
 2025-06-30 14:35 - INFO - Summary written to output/customers_summary.txt
 2025-06-30 14:35 - INFO - All files have successfully been summarized!
+2025-07-03 10:59 - INFO - Successfully logged: users.ndjson
+2025-07-03 10:59 - INFO - Successfully logged: products.csv
+2025-07-03 10:59 - INFO - Successfully logged: customers.csv
+2025-07-03 10:59 - INFO - All files have been iterated!
+2025-07-03 10:59 - INFO - Summary written to output/users_summary.txt
+2025-07-03 10:59 - INFO - Summary written to output/products_summary.txt
+2025-07-03 10:59 - INFO - Summary written to output/customers_summary.txt
+2025-07-03 10:59 - INFO - All files have successfully been summarized!
+2025-07-03 11:27 - INFO - Successfully logged: users.ndjson
+2025-07-03 11:27 - INFO - Successfully logged: products.csv
+2025-07-03 11:27 - INFO - Successfully logged: customers.csv
+2025-07-03 11:27 - INFO - All files have been iterated!
+2025-07-03 11:27 - INFO - Summary written to output/users_summary.txt
+2025-07-03 11:27 - INFO - Summary written to output/products_summary.txt
+2025-07-03 11:27 - INFO - Summary written to output/customers_summary.txt
+2025-07-03 11:27 - INFO - All files have successfully been summarized!

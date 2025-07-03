@@ -7,18 +7,16 @@ def main():
     logger = setup_logger()
     args = parse_args()
 
-    file_tuples = load_files(args.dir_path)
-
-    feature_list = args.features.split(",") if args.features else []
-
-    writer = args.writer or "txt"
-
     try:
+        # Input layer
+        file_tuples = load_files(args.dir_path)
+
+        # Processing layer
         for df, file_name, file_type in file_tuples:
-            summarize_df(df, file_name, file_type, feature_list, writer)
-    
+            summarize_df(df, file_name, file_type, args.features, args.writer)
+         
     except Exception as e:
-        logger.info(f"Error with summarizing files: {e}")
+        logger.error(f"Pipeline failed due to: {e}")
     
     else:
         logger.info(f"All files have successfully been summarized!")
