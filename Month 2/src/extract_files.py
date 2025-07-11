@@ -16,8 +16,8 @@ def extract_file(dir_path: str) -> list:
         dataframes = []
         for file in files:
             if file.lower().endswith(".csv"):
+                file_name = os.path.splitext(file)[0]
                 file = os.path.join(dir_path, file)
-                file_name = os.path.basename(file)
                 df = pd.read_csv(file)
                 dataframes.append((df, file_name))
                 logger.info(f"{file} successfully read into a dataframe!")
