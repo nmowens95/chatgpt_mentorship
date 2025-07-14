@@ -1,4 +1,3 @@
-# claims.csv
 SCHEMA_REGISTRY = {
     "claims": {
         "claim_id": "currency",
