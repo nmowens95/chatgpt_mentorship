@@ -16,11 +16,12 @@ def extract_file(dir_path: str) -> list:
         dataframes = []
         for file in files:
             if file.lower().endswith(".csv"):
-                file_name = os.path.splitext(file)[0]
+                file_name, file_ext = os.path.splitext(file)
+                full_name = file_name + file_ext
                 file = os.path.join(dir_path, file)
                 df = pd.read_csv(file)
-                dataframes.append((df, file_name))
-                logger.info(f"{file} successfully read into a dataframe!")
+                dataframes.append((df, file_name, full_name))
+                logger.info(f"{file_name} successfully read into a dataframe!")
         return dataframes
     
     except Exception as e:
