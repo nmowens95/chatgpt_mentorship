@@ -1,0 +1,5 @@
+first_name:
+  type: name
+
+last_name:
+  type: name

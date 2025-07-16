@@ -1,0 +1,12 @@
+claim_id:
+  type: currency
+  required: true
+
+claim_amount:
+  type: currency
+
+status:
+  type: name
+
+incident_date:
+  type: date

@@ -33,10 +33,11 @@ def transform_file(df, schema):
     df_cleaned = drop_null_rows(df_cleaned)
 
     for col, rule in schema.items():
-        if col in df_cleaned.columns and rule in TRANSFORM_REGISTRY:
-            df_cleaned[col] = TRANSFORM_REGISTRY[rule](df_cleaned[col])
+        rule_type = rule.get("type")
+        if col in df_cleaned.columns and rule_type in TRANSFORM_REGISTRY:
+            df_cleaned[col] = TRANSFORM_REGISTRY[rule_type](df_cleaned[col])
         else:
-            logger.warning(f"Skipping transformation for column: {col} with rule: {rule}")            
+            logger.warning(f"Skipping transformation for column: {col} with rule: {rule_type}")            
 
     # Value cleaning
     # for col in df_cleaned.columns:

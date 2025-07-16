@@ -3,15 +3,20 @@ from src import extract_file
 from src import transform_file
 from src import SCHEMA_REGISTRY
 from src import load_files
+from src import load_schema
+from src import arg_parser
 
+# dir_path = "data/raw"
 logger = logger_setup()
-dir_path = "data/raw"
 
-def main(dir_path):
-    dfs = extract_file(dir_path)
+def main():
+    args = arg_parser()
+    
+    dfs = extract_file(args.dir_path)
 
     for df, file_base_name, file_full_name in dfs:
-        schema = SCHEMA_REGISTRY.get(file_base_name)
+        # schema = SCHEMA_REGISTRY.get(file_base_name)
+        schema = load_schema(file_base_name)
 
         if schema:
             df_transformed = transform_file(df, schema)
@@ -27,5 +32,5 @@ def main(dir_path):
 
 
 if __name__ == "__main__":
-    main(dir_path)
+    main()
     
