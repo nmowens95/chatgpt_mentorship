@@ -34,16 +34,13 @@ def transform_file(df, schema):
 
     for col, rule in schema.items():
         rule_type = rule.get("type")
-        if col in df_cleaned.columns and rule_type in TRANSFORM_REGISTRY:
-            df_cleaned[col] = TRANSFORM_REGISTRY[rule_type](df_cleaned[col])
-        else:
-            logger.warning(f"Skipping transformation for column: {col} with rule: {rule_type}")            
-
-    # Value cleaning
-    # for col in df_cleaned.columns:
-    #     cleaner = apply_cleaning_values(df_cleaned[col])
-
-    #     if cleaner:
-    #         df_cleaned[col] = cleaner(df_cleaned[col])
+        try:
+            if col in df_cleaned.columns and rule_type in TRANSFORM_REGISTRY:
+                df_cleaned[col] = TRANSFORM_REGISTRY[rule_type](df_cleaned[col])
+                logger.info(f"Transformed column: {col} using rule: {rule_type}")
+            else:
+                logger.warning(f"Skipping transformation for column: {col} with rule: {rule_type}, column not found or missing")
+        except Exception as e:
+            logger.error(f"Failed to transform column: {col} with rule: {rule_type} - {e}")    
     
     return df_cleaned

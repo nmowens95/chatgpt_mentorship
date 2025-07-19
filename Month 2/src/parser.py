@@ -1,6 +1,6 @@
 import argparse
 
-def arg_parser():
+def get_args():
     parser = argparse.ArgumentParser(description="Pipeline arguments")
     parser.add_argument(
         "dir_path",
