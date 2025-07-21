@@ -1,0 +1,32 @@
+file: customers.csv
+columns:
+- name: Customer ID
+  dtype: string
+  nullable: false
+- name: Full Name
+  dtype: string
+  nullable: false
+- name: Email
+  dtype: string
+  nullable: false
+- name: Phone Number
+  dtype: string
+  nullable: false
+- name: Address
+  dtype: string
+  nullable: false
+- name: Date of Birth
+  dtype: datetime
+  nullable: false
+- name: Signup Date
+  dtype: datetime
+  nullable: false
+- name: Is Active
+  dtype: string
+  nullable: false
+- name: Account Balance
+  dtype: float
+  nullable: false
+- name: Preferred Contact Method
+  dtype: string
+  nullable: true

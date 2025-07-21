@@ -1,0 +1,32 @@
+file: claims.csv
+columns:
+- name: Claim ID
+  dtype: string
+  nullable: false
+- name: Customer ID
+  dtype: string
+  nullable: false
+- name: Claim Date
+  dtype: datetime
+  nullable: false
+- name: Claim Amount
+  dtype: float
+  nullable: false
+- name: Currency
+  dtype: string
+  nullable: true
+- name: Status
+  dtype: string
+  nullable: true
+- name: Service Type
+  dtype: string
+  nullable: true
+- name: Claim Description
+  dtype: string
+  nullable: false
+- name: Provider Name
+  dtype: string
+  nullable: false
+- name: Follow Up Required
+  dtype: string
+  nullable: true
