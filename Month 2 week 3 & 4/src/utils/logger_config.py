@@ -8,7 +8,7 @@ def logger_setup(name="Medallion", log_file="app.logs", level=logging.INFO):
     full_path = output_dir/log_file
 
     formatter = logging.Formatter(
-        "{asctime} - {level} - {message}",
+        "{asctime} - {levelname} - {message}",
         style="{",
         datefmt="%Y-%m-%d %H:%M"
     )
