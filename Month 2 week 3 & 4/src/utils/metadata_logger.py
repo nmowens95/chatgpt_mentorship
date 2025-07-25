@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from utils.logger_config import logger_setup
 from datetime import datetime
+import pandas as pd
 
 logger = logger_setup()
 
@@ -15,12 +16,20 @@ def extract_metadata(df, file_name):
     }
     return metadata
 
+def transform_metadata(df: pd.DataFrame, filename: str) -> dict:
+    metadata = {
+        "file": str(filename),
+        "status": "transformed",
+        "transformed_at": datetime.now().isoformat()
+    }
+    return metadata
+
 # Writes to file
-def metadata_writer(metadata: dict) -> Path:
-    output_dir = Path("logs/extract_logs")
+def metadata_writer(metadata: dict, process: str) -> Path:
+    output_dir = Path(f"logs/{process}_logs")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    log_file = output_dir/f"extract_log.jsonl"
+    log_file = output_dir/f"{process}_log.jsonl"
     
     try:
         with open(log_file, "a") as f:
@@ -34,19 +43,20 @@ def metadata_writer(metadata: dict) -> Path:
 
     return log_file
 
-def get_processed_files(log_path=("logs/extract_logs/extract_log.jsonl")) -> set:
-    log_path = Path(log_path)
+def get_processed_files(log_path, process) -> set:
+
+    log_path = Path(f"logs/extract_logs/{process}_log.jsonl")
     
     if not log_path.exists():
         return set()
     
-    proecessed_files = set()
+    processed_files = set()
     with open(log_path, "r") as f:
         for line in f:
             try:
                 entry = json.loads(line)
-                proecessed_files.add(entry["file"])
+                processed_files.add(entry["file"])
             except json.JSONDecodeError:
                 continue
             
-    return proecessed_files
+    return processed_files

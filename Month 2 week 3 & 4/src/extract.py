@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 from utils.logger_config import logger_setup
-from metadata_logger import extract_metadata, metadata_writer, get_processed_files
+from utils.metadata_logger import extract_metadata, metadata_writer, get_processed_files
 
 logger = logger_setup()
 
@@ -34,7 +34,7 @@ def extract_csv_files(file_dir):
             df = pd.read_csv(csv_file)
            
             metadata = extract_metadata(df, file_name)
-            metadata_writer(metadata)
+            metadata_writer(metadata, process="extract")
 
             dataframes[file_name] = df
         
