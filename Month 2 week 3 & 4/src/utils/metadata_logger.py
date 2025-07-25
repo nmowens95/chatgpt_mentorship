@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from utils.logger_config import logger_setup
+from src.utils.logger_config import logger_setup
 from datetime import datetime
 import pandas as pd
 
@@ -43,9 +43,8 @@ def metadata_writer(metadata: dict, process: str) -> Path:
 
     return log_file
 
-def get_processed_files(log_path, process) -> set:
-
-    log_path = Path(f"logs/extract_logs/{process}_log.jsonl")
+def get_processed_files(log_dir=f"logs/extract_logs", process=None) -> set:
+    log_path = Path(f"{log_dir}/{process}_log.jsonl")
     
     if not log_path.exists():
         return set()
