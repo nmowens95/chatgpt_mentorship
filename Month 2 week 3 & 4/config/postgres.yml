@@ -1,0 +1,6 @@
+Postgres:
+  host: localhost
+  port: 5433
+  user: postgres
+  password: password
+  database: health_insurance_dw
