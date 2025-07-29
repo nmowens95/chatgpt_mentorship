@@ -36,11 +36,33 @@ def run_sql_file(cursor, filepath: str):
     with open(filepath, "r") as f:
         sql = f.read()
         cursor.execute(sql)
-    
+
+TABLE_REGISTRY = {
+    "claims_silver": "claims_gold",
+    "customers_silver": "customers_gold"
+}
+
 def insert_csv_to_table(conn, csv_path: str, table_name: str):
     df = pd.read_csv(csv_path)
-    df = pd.read_csv(csv_path)
     logger.info(f"Loaded DataFrame with shape {df.shape} from {csv_path}")
+
+    if table_name == "claims_gold":
+        if df["claim_id"].isna().any():
+            raise ValueError("Primary key 'claim_id' has null values")
+        if df["customer_id"].isna().any():
+            raise ValueError("Foreign key 'customer_id' has null values")
+        if df["claim_id"].duplicated().any():
+            raise ValueError("Duplicate 'claim_id found")
+        
+    elif table_name == "customers_gold":
+       if df["customer_id"].isna().any():
+            raise ValueError("Foreign key 'customer_id' has null values")
+       if df["customer_id"].duplicated().any():
+            raise ValueError("Duplicate 'customer_id' values found.")
+
+    else:
+        logger.info(f"{table_name} not accounted for")
+
     logger.info(f"Inserting {len(df)} rows from {csv_path.name} into {table_name}")
 
     with conn.cursor() as cursor:
@@ -48,7 +70,7 @@ def insert_csv_to_table(conn, csv_path: str, table_name: str):
         try:
             run_sql_file(cursor, "sql/gold/create_claims_gold.sql")
             run_sql_file(cursor, "sql/gold/create_customers_gold.sql")
-            logger.info("Tables already, exist or were created")
+            logger.info("Tables already exist, or were created")
             conn.commit()
         except Exception as e:
             logger.error(f"Tables were not created: {e}")
@@ -59,11 +81,6 @@ def insert_csv_to_table(conn, csv_path: str, table_name: str):
             sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
             cursor.execute(sql, tuple(None if pd.isna(x) else x for x in row))
         conn.commit()
-
-TABLE_REGISTRY = {
-    "claims_silver": "claims_gold",
-    "customers_silver": "customers_gold"
-}
 
 def load_gold_to_postgres(file_dir: str, conn):
     file_dir = Path(file_dir)
