@@ -1,0 +1,16 @@
+Table: claims
+columns:
+- name: claim_id
+  dtype: string
+- name: customer_id
+  dtype: string
+- name: provider_id
+  dtype: string
+- name: procedure_code      
+  dtype: string
+- name: claim_date
+  dtype: datetime
+- name: claim_amount
+  dtype: float
+- name: status
+  dtype: string

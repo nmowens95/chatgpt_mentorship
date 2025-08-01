@@ -1,0 +1,11 @@
+Table: providers
+# This file defines the schema for the providers table in the Snowflake database.
+columns:
+- name: provider_id
+  dtype: string
+- name: provider_name
+  dtype: string
+- name: specialty
+  dtype: string
+- name: location
+  dtype: string

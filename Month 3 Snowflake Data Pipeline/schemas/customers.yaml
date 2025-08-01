@@ -1,0 +1,14 @@
+Table: customers
+columns:
+- name: customer_id
+  dtype: string
+- name: first_name
+  dtype: string
+- name: last_name
+  dtype: string
+- name: gender
+  dtype: string
+- name: dob
+  dtype: datetime
+- name: zip_code
+  dtype: float

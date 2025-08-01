@@ -1,0 +1,9 @@
+Table: procedures
+# This file defines the schema for the procedures table in the Snowflake database.
+columns:
+- name: procedure_code
+  dtype: string
+- name: description
+  dtype: string
+- name: standard_cost
+  dtype: float 
