@@ -6,15 +6,15 @@ CREATE OR REPLACE TABLE healthcare.raw.providers (
     provider_name STRING,
     specialty STRING,
     location STRING
-)
+);
 
 CREATE OR REPLACE TABLE healthcare.raw.procedures (
     procedure_code STRING PRIMARY KEY,
     description STRING,
     standard_cost FLOAT
-)
+);
 
-CREATE OR REPLACE TABLE healthcare.raw.customers (
+CREATE OR REPLACE TABLE healthcare.raw.claims (
     claim_id STRING PRIMARY KEY,
     customer_id STRING,
     provider_id STRING,
@@ -22,7 +22,7 @@ CREATE OR REPLACE TABLE healthcare.raw.customers (
     claim_date DATE,
     claim_amount FLOAT,
     status STRING
-)
+);
 
 CREATE OR REPLACE TABLE heathcare.raw.customers (
     customer_id STRING PRIMARY KEY,
@@ -31,4 +31,4 @@ CREATE OR REPLACE TABLE heathcare.raw.customers (
     gender STRING,
     dob DATE,
     zip_code STRING 
-)
+);
