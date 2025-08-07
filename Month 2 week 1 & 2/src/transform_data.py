@@ -12,15 +12,6 @@ def clean_column_names(df):
 def drop_null_rows(df, threshold=0.5):
     return df.dropna(thresh=int(threshold * len(df.columns)))
 
-# def apply_cleaning_values(col):
-#     if is_numeric_dtype(col):
-#         return clean_currency
-#     if is_string_dtype(col):
-#         return clean_names
-#     if is_datetime64_any_dtype(col):
-#         return parse_dates
-
-
 TRANSFORM_REGISTRY = {
     "currency": clean_currency,
     "date": parse_dates,
