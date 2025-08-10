@@ -24,6 +24,7 @@ def load_to_snowflake(df: dict, file_name, conn):
             placeholders = ", ".join(['%s'] * len(df.columns))
 
             sql = f"INSERT INTO {table} ({columns}) VALUES ({placeholders})"
+            
             cursor.executemany(sql, rows)
             conn.commit()
 
