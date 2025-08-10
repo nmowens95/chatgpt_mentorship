@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: healthcare_raw
+    database: healthcare
+    schema: raw
+    tables:
+      - name: customers
+        description: "Raw customer demographic data."
+      - name: claims
+        description: "Raw claims data including amounts, status, and related IDs."
+      - name: providers
+        description: "Raw provider details including specialty and location."
+      - name: procedures
+        description: "Raw procedure codes with descriptions and standard costs."
