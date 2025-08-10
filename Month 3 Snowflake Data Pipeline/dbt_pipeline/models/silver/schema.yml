@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Dimension table containing cleaned and enriched customer information."
+    columns:
+      - name: customer_key
+        description: "Surrogate key for customers."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Original customer ID from source system."
+        tests:
+          - not_null
+      - name: first_name
+        description: "Customer's first name."
+      - name: last_name
+        description: "Customer's last name."
+      - name: gender
+        description: "Customer's gender."
+      - name: dob
+        description: "Date of birth."
+      - name: zip_code
+        description: "5-digit postal code."
+      - name: zip_flag
+        description: "Flag indicating invalid zip codes (1 if invalid, 0 if valid)."
+      - name: updated_at
+        description: "Date the record was last updated."
+  - name: dim_procedures
+    description: "Dimension table containing procedure codes and descriptions."
+    columns:
+      - name: procedure_key
+        description: "Surrogate key for procedures."
+        tests:
+          - unique
+          - not_null
+      - name: procedure_code
+        description: "Procedure code."
+      - name: description
+        description: "Description of the procedure."
+  - name: dim_providers
+    description: "Dimension table containing provider information."
+    columns:
+      - name: provider_key
+        description: "Surrogate key for providers."
+        tests:
+          - unique
+          - not_null
+      - name: provider_name         
+        description: "Name of the healthcare provider."
+      - name: specialty
+        description: "Specialty of the provider."
+      - name: location
+        description: "Location of the provider."
+      - name: last_updated
+        description: "Date the provider record was last updated."
+  - name: fact_claims
+    description: "Fact table containing claims data with foreign keys to dimensions."
+    columns:
+      - name: claim_key
+        description: "Surrogate key for claims."
+        tests:
+          - unique
+          - not_null
+      - name: claim_id
+        description: "Unique identifier for the claim."
+        tests:
+          - unique
+          - not_null
+      - name: customer_key
+        description: "Foreign key to the customer dimension."
+        tests:
+          - not_null
+      - name: provider_key
+        description: "Foreign key to the provider dimension."
+        tests:
+          - not_null
+      - name: procedure_key
+        description: "Foreign key to the procedure dimension."
+        tests:
+          - not_null
+      - name: claim_amount
+        description: "Total amount of the claim."
+      - name: claim_date
+        description: "Date when the claim was filed."
+
