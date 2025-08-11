@@ -27,6 +27,7 @@ models:
         description: "Flag indicating invalid zip codes (1 if invalid, 0 if valid)."
       - name: updated_at
         description: "Date the record was last updated."
+
   - name: dim_procedures
     description: "Dimension table containing procedure codes and descriptions."
     columns:
@@ -39,6 +40,7 @@ models:
         description: "Procedure code."
       - name: description
         description: "Description of the procedure."
+
   - name: dim_providers
     description: "Dimension table containing provider information."
     columns:
@@ -55,6 +57,7 @@ models:
         description: "Location of the provider."
       - name: last_updated
         description: "Date the provider record was last updated."
+        
   - name: fact_claims
     description: "Fact table containing claims data with foreign keys to dimensions."
     columns:

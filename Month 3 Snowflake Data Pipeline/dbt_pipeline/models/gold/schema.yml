@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: top_open_claims_by_provider
+    description: "Top open claims by provider, showing the total cost and claim amount."
+    columns:
+      - name: provider_name
+        description: "Name of the healthcare provider."
+      - name: specialty
+        description: "Specialty of the provider."
+      - name: location
+        description: "Location of the provider."
+      - name: claim_date
+        description: "Date of the claim."
+      - name: cost_of_procedure
+        description: "Total cost of the procedure."
+      - name: claim_amount
+        description: "Total claim amount."

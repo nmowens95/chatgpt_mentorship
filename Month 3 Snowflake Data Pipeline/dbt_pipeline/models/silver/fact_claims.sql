@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 SELECT
     {{ dbt_utils.generate_surrogate_key(['claim_id']) }} AS claim_key,
     c.claim_id,
