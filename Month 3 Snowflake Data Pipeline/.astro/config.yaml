@@ -1,0 +1,24 @@
+project:
+    name: month-3-snowflake-data-pipeline
+
+postgres:
+  port: 5434
+
+deploy:
+  airflow:
+    extraMounts:
+      - type: bind
+        source: ./src
+        target: /opt/airflow/dags/src
+      - type: bind
+        source: ./dbt_pipeline
+        target: /opt/airflow/dags/dbt_pipeline
+      - type: bind
+        source: ./schemas
+        target: /opt/airflow/dags/schemas
+      - type: bind
+        source: ./sql
+        target: /opt/airflow/dags/sql
+      - type: bind
+        source: ./data
+        target: /opt/airflow/dags/data
