@@ -4,21 +4,37 @@ project:
 postgres:
   port: 5434
 
-deploy:
-  airflow:
-    extraMounts:
-      - type: bind
-        source: ./src
-        target: /opt/airflow/dags/src
-      - type: bind
-        source: ./dbt_pipeline
-        target: /opt/airflow/dags/dbt_pipeline
-      - type: bind
-        source: ./schemas
-        target: /opt/airflow/dags/schemas
-      - type: bind
-        source: ./sql
-        target: /opt/airflow/dags/sql
-      - type: bind
-        source: ./data
-        target: /opt/airflow/dags/data
+mounts:
+  - source: ./dags
+    target: /usr/local/airflow/dags
+  - source: ./src
+    target: /usr/local/airflow/dags/src
+  - source: ./dbt_pipeline
+    target: /usr/local/airflow/dags/dbt_pipeline
+  - source: ./schemas
+    target: /usr/local/airflow/dags/schemas
+  - source: ./sql
+    target: /usr/local/airflow/dags/sql
+  - source: ./data
+    target: /usr/local/airflow/dags/data
+# deploy:
+#   airflow:
+#     extraMounts:
+      # - type: bind
+      #   source: ./dags
+      #   target: /usr/local/airflow/dags
+      # - type: bind
+      #   source: ./src
+      #   target: /usr/local/airflow/dags/src
+      # - type: bind
+      #   source: ./dbt_pipeline
+      #   target: /usr/local/airflow/dags/dbt_pipeline
+      # - type: bind
+      #   source: ./schemas
+      #   target: /usr/local/airflow/dags/schemas
+      # - type: bind
+      #   source: ./sql
+      #   target: /usr/local/airflow/dags/sql
+      # - type: bind
+      #   source: ./data
+      #   target: /usr/local/airflow/dags/data
